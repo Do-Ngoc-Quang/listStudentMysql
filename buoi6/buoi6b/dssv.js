@@ -8,7 +8,7 @@ function getStudents() {
         })
         .then(data => {
             lst = [];
-            data.forEach(dssv, i => {
+            data.forEach((dssv, i) => {
                 dssv.STT = i + 1;
                 lst.push(dssv);
             });
@@ -18,12 +18,12 @@ function getStudents() {
                 $("#dssvTemplate").tmpl(lst).appendTo("#tbodySV");
             }
             else {
-                str = "<caption>No data fond!</caption>";
+                let str = "<caption>No data fond!</caption>";
                 $("#tbodySV").html(str);
             }
         })
         .catch(err => {
-            str = "<caption>Error ...</caption>";
+            let str = "<caption>Error ...</caption>";
             $("#tbodySV").html(str);
         })
 
