@@ -1,5 +1,8 @@
 lst = [];
 curItem = null;
+$(function (){
+    getStudents();
+});
 
 function getStudents() {
     fetch("http://localhost:3000/students")
@@ -25,6 +28,6 @@ function getStudents() {
         .catch(err => {
             let str = "<caption>Error ...</caption>";
             $("#tbodySV").html(str);
-        })
+        });
 
 }

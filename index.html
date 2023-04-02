@@ -37,22 +37,13 @@
           <thead>
             <tr>
               <th scope="col-1">ID</th>
-              <th scope="col-6">Name</th>
-              <th scope="col-2">Class</th>
+              <th scope="col-6">Mssv</th>
+              <th scope="col-2">Name</th>
               <th scope="col-3">Action</th>
             </tr>
           </thead>
           <tbody id="tbodySV">
-            <tr>
-              <th scope="row">{STT}</th>
-              <td>${maSV}</td>
-              <td>${hoTen}</td>
-              <td>${Lop}</td>
-              <td>
-                <button class="btn-sm btn-info">Edit</button>
-                <button class="btn-sm btn-danger">Delete</button>
-              </td>
-            </tr>
+            
           </tbody>
         </table>
       </div>
@@ -63,7 +54,7 @@
     </footer>
   </div>
 
-  <script src="buoi6/buoi6b/assets/dist/js/jquery-3.6.4.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="buoi6/buoi6b/assets/dist/js/jquery-ui.js"></script>
   <script src="buoi6/buoi6b/assets/dist/js/jquery.tmpl.js"></script>
   <script src="buoi6/buoi6b/assets/dist/js/bootstrap.bundle.min.js"></script>
@@ -72,9 +63,9 @@
   <script src="buoi6/buoi6b/dssv.js"></script>
   <script id="dssvTemplate" type="text/x-jQuery-tmpl">
     <tr>
-      <th scope="row">{STT}</th>
+      <th scope="row">${STT}</th>
       <td>${maSV}</td>
-      <td>${hoTen}</td>
+      <td>${HoTen}</td>
       <td>${Lop}</td>
       <td>
         <button class="btn-sm btn-info">Edit</button>
