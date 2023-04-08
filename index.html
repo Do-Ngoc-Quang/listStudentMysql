@@ -15,11 +15,8 @@
   <link rel="stylesheet" href="buoi6/buoi6b/assets/dist/css/jquery-ui.css">
   <link href="buoi6/buoi6b/form-validation.css" rel="stylesheet">
 
-
   <!-- Bootstrap core CSS -->
   <link href="buoi6/buoi6b/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
 </head>
 
 <body class="bg-light">
@@ -31,49 +28,137 @@
         <h2>List Students</h2>
         <p class="lead"></p>
       </div>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudent">
+        Add Student
+      </button>
 
-      <div class="row g-5">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col-1">ID</th>
-              <th scope="col-6">Mssv</th>
-              <th scope="col-2">Name</th>
-              <th scope="col-3">Action</th>
-            </tr>
-          </thead>
-          <tbody id="tbodySV">
-            
-          </tbody>
-        </table>
+      <!-- Modal -->
+      <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group row mb-3">
+                <label for="txtCode" class="col-sm-2 col-form-label">Code</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="txtCode" value="" placeholder="Code of Student">
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label for="txtName" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="txtName" value="" placeholder="Name of Student">
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label for="txtClass" class="col-sm-2 col-form-label">Class</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="txtClass" value="" placeholder="Class of Student">
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label for="txtClass" class="col-sm-2 col-form-label">Birthday</label>
+                <div class="col-sm-10">
+                  <div class="control">
+                    <input type="text" id="dateTime">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="txtClass" class="col-sm-2 col-form-label">Gender</label>
+                <div class="col-sm-10">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                    <label class="form-check-label" for="male">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                    <label class="form-check-label" for="female">Female</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
+                    <label class="form-check-label" for="other">Other</label>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
       </div>
-    </main>
+  </div>
+  <div class="row g-5">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Code Student</th>
+          <th scope="col">Name</th>
+          <th scope="col">Class</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Birthday</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody id="tbodySV">
+        <tr>
+          <th scope="row">${STT}</th>
+          <td>${codeStudent}</td>
+          <td>${name}</td>
+          <td>${class}</td>
+          <td>${gender}</td>
+          <td>${birthday}</td>
+          <td>
+            <button class="btn-sm btn-info">Edit</button>
+            <button class="btn-sm btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </main>
 
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-      <p class="mb-1">&copy; 2021–2023 Design by <a href="https://github.com/Do-Ngoc-Quang">Quang</a></p>
-    </footer>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021–2023 Design by <a href="https://github.com/Do-Ngoc-Quang">Quang</a></p>
+  </footer>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="buoi6/buoi6b/assets/dist/js/jquery-3.6.4.min.js"></script>
   <script src="buoi6/buoi6b/assets/dist/js/jquery-ui.js"></script>
   <script src="buoi6/buoi6b/assets/dist/js/jquery.tmpl.js"></script>
+  <script src="buoi6/buoi6b/assets/dist/js/ejDateTimePicker.js"></script>
   <script src="buoi6/buoi6b/assets/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="buoi6/buoi6b/form-validation.js"></script>
   <script src="buoi6/buoi6b/dssv.js"></script>
-  <script id="dssvTemplate" type="text/x-jQuery-tmpl">
+  <!-- <script id="dssvTemplate" type="text/x-jQuery-tmpl">
     <tr>
       <th scope="row">${STT}</th>
-      <td>${maSV}</td>
-      <td>${HoTen}</td>
-      <td>${Lop}</td>
+      <td>${codeStudent}</td>
+      <td>${name}</td>
+      <td>${class}</td>
+      <td>${gender}</td>
+      <td>${birthday}</td>
       <td>
         <button class="btn-sm btn-info">Edit</button>
         <button class="btn-sm btn-danger">Delete</button>
       </td>
     </tr>
-  </script>
-
+  </script> -->
 
 </body>
 
