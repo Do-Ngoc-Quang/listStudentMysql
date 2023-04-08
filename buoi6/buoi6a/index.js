@@ -17,11 +17,11 @@ app.get('/',(req, res)=>{
 app.get('/students',(req, res)=>{
     res.send(Object.values(dssv));
 });
-app.get('/students/:maSV',(req, res)=>{
-    console.log(req.params.maSV);
+app.get('/students/:codeStudent',(req, res)=>{
+    console.log(req.params.codeStudent);
     let i = 0;
-    for(i =0; i < dssv.length; i++){
-        if(dssv[i].maSV == req.params.maSV){
+    for(i = 0; i < dssv.length; i++){
+        if(dssv[i].codeStudent == req.params.codeStudent){
             break;
         }
     }
