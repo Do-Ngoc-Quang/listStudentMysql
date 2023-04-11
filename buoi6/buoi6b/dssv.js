@@ -1,8 +1,22 @@
 lst = [];
 curItem = null;
+
+// const newStudent = {
+//     codeStudent: "123",
+//     name: "Thanh Triều",
+//     class: "17CSI01",
+//     gender: "Nam",
+//     birthday: "01/01/2222"
+// };
+
 $(function () {
     getStudents();
 });
+// $('#add-student-button').on('click', function () {
+//     addStudent();
+// });, addStudentToFile(newStudent)
+
+
 
 function getStudents() {
     // fetch("http://localhost:3000/students")
@@ -31,7 +45,6 @@ function getStudents() {
     //     });
 
     let students = [];
-
     fetch("http://localhost:3000/students")
         .then(res => res.json())
         .then(data => {
@@ -48,76 +61,9 @@ function getStudents() {
                     row.append($(`<td>${dssv.gender}</td>`));
                     row.append($(`<td>${dssv.birthday}</td>`));
                     row.append($(`<td>
-                                    <button class="btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#editStudent_${dssv.codeStudent}">Edit</button>
-                                    <button class="btn-sm btn-danger">Delete</button>
-                                </td>
-                    
-                                <div class="modal fade" id="editStudent_${dssv.codeStudent}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <form>
-                                        <div class="form-group row mb-3">
-                                        <label for="txtCode" class="col-sm-2 col-form-label">Code</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="txtCode" value="" placeholder="Code of Student">
-                                        </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                        <label for="txtName" class="col-sm-2 col-form-label">Name</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="txtName" value="" placeholder="Name of Student">
-                                        </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                        <label for="txtClass" class="col-sm-2 col-form-label">Class</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="txtClass" value="" placeholder="Class of Student">
-                                        </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                        <label for="txtClass" class="col-sm-2 col-form-label">Birthday</label>
-                                        <div class="col-sm-10">
-                                            <div class="control">
-                                            <input type="text" class="form-control datetimepicker" name="date" id="date">
-                                            </div>
-                                        </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                        <label for="txtClass" class="col-sm-2 col-form-label">Gender</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
-                                            <label class="form-check-label" for="male">Male</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
-                                            <label class="form-check-label" for="female">Female</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
-                                            <label class="form-check-label" for="other">Other</label>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Add Student</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                                `));
+                                    <button class="btn-sm btn-info" onclick="editStudent(${dssv.codeStudent})">Edit</button>
+                                    <button class="btn-sm btn-danger" onclick="deleteStudent(${dssv.codeStudent})">Delete</button>
+                                </td>`));
                     tbody.append(row);
                 });
             } else {
@@ -130,3 +76,42 @@ function getStudents() {
         });
 
 }
+
+
+
+// function addStudentToFile(newStudent) {
+//     // Retrieve existing list from local file
+//     let existingList = fs.readFileSync('DSSV1.json', 'utf8');
+
+//     // Parse JSON data into JavaScript object
+//     let studentList = JSON.parse(existingList);
+
+    
+//     // Push new student object into existing list
+//     studentList.push(newStudent);
+
+//     // Convert updated list back to JSON string
+//     let updatedList = JSON.stringify(studentList);
+
+//     // Store updated JSON string in local file
+//     fs.writeFileSync('DSSV1.json', updatedList, 'utf8');
+// }
+
+function deleteStudent(id) {
+    if (confirm("Are you sure you want to delete this student?")) {
+      $.ajax({
+        url: "http://localhost:3000/students/" + id,
+        type: "DELETE",
+        success: function(result) {
+          alert("Student deleted successfully!");
+          loadStudentList();
+        },
+        error: function(xhr, status, error) {
+          console.log(xhr);
+          alert("Error deleting student: " + error);
+        }
+      });
+    }
+  }
+  
+  

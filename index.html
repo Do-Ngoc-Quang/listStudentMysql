@@ -43,72 +43,7 @@
         Add Student
       </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group row mb-3">
-                  <label for="txtCode" class="col-sm-2 col-form-label">Code</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="txtCode" value="" placeholder="Code of Student">
-                  </div>
-                </div>
-                <div class="form-group row mb-3">
-                  <label for="txtName" class="col-sm-2 col-form-label">Name</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="txtName" value="" placeholder="Name of Student">
-                  </div>
-                </div>
-                <div class="form-group row mb-3">
-                  <label for="txtClass" class="col-sm-2 col-form-label">Class</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="txtClass" value="" placeholder="Class of Student">
-                  </div>
-                </div>
-                <div class="form-group row mb-3">
-                  <label for="txtClass" class="col-sm-2 col-form-label">Birthday</label>
-                  <div class="col-sm-10">
-                    <div class="control">
-                      <input type="text" class="form-control datetimepicker" name="date" id="date">
-                    </div>
-                  </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="txtClass" class="col-sm-2 col-form-label">Gender</label>
-                  <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
-                      <label class="form-check-label" for="male">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
-                      <label class="form-check-label" for="female">Female</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
-                      <label class="form-check-label" for="other">Other</label>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Add Student</button>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="row g-5">
         <table class="table table-striped">
           <thead>
@@ -133,6 +68,74 @@
       <p class="mb-1">&copy; 2021–2023 Design by <a href="https://github.com/Do-Ngoc-Quang">Quang</a></p>
     </footer>
   </div>
+  <!-- Modal -->
+  <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="add-student-form">
+            <div class="form-group row mb-3">
+              <label for="txtCode" class="col-sm-2 col-form-label">Code</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="txtCode" value="" placeholder="Code of Student">
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <label for="txtName" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="txtName" value="" placeholder="Name of Student">
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <label for="txtClass" class="col-sm-2 col-form-label">Class</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="txtClass" value="" placeholder="Class of Student">
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <label for="txtClass" class="col-sm-2 col-form-label">Birthday</label>
+              <div class="col-sm-10">
+                <div class="control">
+                  <input type="text" class="form-control datetimepicker" name="date" id="date">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="txtGender" class="col-sm-2 col-form-label">Gender</label>
+              <div class="col-sm-10">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                  <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                  <label class="form-check-label" for="female">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
+                  <label class="form-check-label" for="other">Other</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="close" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+              <button type="reset" class="btn btn-info">Reset</button>
+              <button type="submit" class="btn btn-primary" onclick="addStudent()">Add Student</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <script src="buoi6/buoi6b/assets/dist/js/jquery-3.6.4.min.js"></script>
   <script src="buoi6/buoi6b/assets/dist/js/jquery-ui.js"></script>
@@ -142,7 +145,7 @@
 
   <script src="buoi6/buoi6b/form-validation.js"></script>
   <script src="buoi6/buoi6b/dssv.js"></script>
-  <!-- <script id="dssvTemplate" type="text/x-jQuery-tmpl">
+  <script id="dssvTemplate" type="text/x-jQuery-tmpl">
     <tr>
       <th scope="row">${STT}</th>
       <td>${codeStudent}</td>
@@ -155,7 +158,7 @@
         <button class="btn-sm btn-danger">Delete</button>
       </td>
     </tr>
-  </script> -->
+  </script>
 
 </body>
 
