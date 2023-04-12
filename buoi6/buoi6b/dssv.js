@@ -53,8 +53,12 @@ function getStudents() {
                     row.append($(`<td>${dssv.gender}</td>`));
                     row.append($(`<td>${dssv.birthday}</td>`));
                     row.append($(`<td>
+
                                     <button class="btn-sm btn-info" onclick="openModal(${dssv.codeStudent})">Edit</button>
                                     <button class="btn-sm btn-danger" onclick="deleteStudent(${dssv.codeStudent})">Delete</button>
+                                    <button class="btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editStudent">Edit</button>
+                                    <button class="btn-sm btn-danger">Delete</button>
+
                                 </td>`));
                     tbody.append(row);
                 });
