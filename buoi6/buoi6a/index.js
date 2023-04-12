@@ -62,15 +62,18 @@ app.put('/students', (req, res) => {
     res.send('PUT students!!');
 });
 app.delete('/students/:mssv', (req, res) => {
-    const studentCode = req.params.mssv;
-    const students = require('./DSSV1.json');
-  
-    const updatedStudents = students.filter(student => student.mssv !== studentCode);
-  
-    fs.writeFile('./DSSV1.json', JSON.stringify(updatedStudents), (err) => {
-      if (err) throw err;
-      res.status(200).send(`Student with ID ${studentCode} deleted successfully!`);
+    const fs = require('fs');
+    console.log(id);
+    const studentCode = '21661029';
+    const students = require('./students.json');
+
+    const updatedStudents = students.filter(student => student.codeStudent !== studentCode);
+
+    fs.writeFile('./students.json', JSON.stringify(updatedStudents), err => {
+        if (err) throw err;
+        console.log(`Student with code ${studentCode} deleted successfully!`);
     });
-  });
-  
+
+});
+
 app.listen(port, () => console.log(`App is running at port ${port}`));
