@@ -4,9 +4,6 @@ curItem = null;
 $(function () {
     getStudents();
 });
-// $('#add-student-button').on('click', function () {
-//     addStudent();
-// });, addStudentToFile(newStudent)
 
 
 
@@ -54,10 +51,8 @@ function getStudents() {
                     row.append($(`<td>${dssv.birthday}</td>`));
                     row.append($(`<td>
 
-                                    <button class="btn-sm btn-info" onclick="openModal(${dssv.codeStudent})">Edit</button>
+                                    <button class="btn-sm btn-info" onclick="openModal(${dssv.codeStudent}, ${i})">Edit</button>
                                     <button class="btn-sm btn-danger" onclick="deleteStudent(${dssv.codeStudent})">Delete</button>
-                                    <button class="btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editStudent">Edit</button>
-                                    <button class="btn-sm btn-danger">Delete</button>
 
                                 </td>`));
                     tbody.append(row);
@@ -72,45 +67,44 @@ function getStudents() {
         });
 }
 
-function openModal(mssv) {
-  var currID = document.querySelector("#currentID");
-  currID.value = "ID: " + mssv;
-  console.log(mssv);
-
-  // var code = document.querySelector('#txtCode');
-  // code.value = mssv;
-  // code.ariaDisabled;
-  // const name = document.querySelector('#txtName');
-  // name.value = "Test";
-  // const studentClass = document.querySelector('#txtClass').value;
-  // studentClass.value = "Test";
-  // const gender = document.querySelector('input[name="gender"]:checked').value;
-  // gender.value = "Test";
-  // const birthday = document.querySelector('#date').value;
-  // birthday.value = "Test";
-
-  // console.log(code.value);
-  // console.log(name.value);
-  // console.log(studentClass);
-  // console.log(gender);
-  // console.log(birthday);
-
+function openModal(mssv, index) {
   fetch('http://localhost:3000/students')
   .then(response => response.json())
-  .then(data => {
-    const student = data.find(data => student.codeStudent === mssv);
-      if (student) {
-        // Nếu tìm thấy sinh viên, thực hiện các hành động tiếp theo
-        console.log(student); // In thông tin sinh viên ra console
-        // Thực hiện các hành động tiếp theo với đối tượng sinh viên này
+  .then(students => {
+    console.log(students); // This will log the array of students to the console
+
+    // Use forEach() to iterate over each student in the array
+    students.forEach((student, i) => {
+      if (i === index) {
+        console.log(student);
+        document.querySelector("#currentID").value = index;
+        document.querySelector("#txtCode").value = student.codeStudent;
+        document.querySelector("#txtName").value = student.name;
+        document.querySelector("#txtClass").value = student.class;
+        document.querySelector("#date").value = student.birthday;
+
+        let genderRadios = document.getElementsByName("gender");
+        genderRadios.forEach(radio => {
+          if (radio.value === student.gender && student.gender=="Nam") {
+            radio.checked = true;
+          }
+          if (radio.value === student.gender && student.gender=="Nữ") {
+            radio.checked = true;
+          }
+        });
+
+        // Show the modal
+        $('#modalEdit').modal('show');
       }
-
-    console.log(data)
+    });
   })
-
+  .catch(error => {
+    console.error();
+    // Handle the error here
+  });
 
   // Get the modal
-  var modal = document.getElementById("myModal");
+  var modal = document.getElementById("modalEdit");
 
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
@@ -133,18 +127,7 @@ function openModal(mssv) {
 
 }
 
-function editStudent(id) {
-  if (confirm("Are you sure you want to delete this student?")) {
-    console.log(id);
-    fetch('http://localhost:3000/students/', {
-    method: 'delete'
-    })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
 
-  }
-}
 
 function deleteStudent(id) {
     if (confirm("Are you sure you want to delete this student?")) {
@@ -158,31 +141,4 @@ function deleteStudent(id) {
 
     }
   }
-  
-  // function loadStudentList() {
-  //   const studentList = document.getElementById("tbodySV");
-  //   studentList.innerHTML = "";
-  
-  //   fetch("http://localhost:3000/students")
-  //     .then(response => response.json())
-  //     .then(students => {
-  //       students.forEach(student => {
-  //         const tr = document.createElement("tr");
-  //         tr.innerHTML = `
-  //           <td>${student.codeStudent}</td>
-  //           <td>${student.name}</td>
-  //           <td>${student.class}</td>
-  //           <td>${student.gender}</td>
-  //           <td>${student.birthday}</td>
-  //           <td>
-  //           <button class="btn-sm btn-info" onclick="editStudent(${student.codeStudent})">Edit</button>
-  //           <button class="btn-sm btn-danger" onclick="deleteStudent(${student.codeStudent})">Delete</button>
-  //           </td>
-  //         `;
-  //         studentList.appendChild(tr);
-  //       });
-  //     })
-  //     .catch(error => console.error(error));
-  // }
-  
   
