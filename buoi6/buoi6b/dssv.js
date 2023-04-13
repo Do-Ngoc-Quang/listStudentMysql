@@ -52,7 +52,7 @@ function getStudents() {
                     row.append($(`<td>
 
                                     <button class="btn-sm btn-info" onclick="openModal(${dssv.codeStudent}, ${i})">Edit</button>
-                                    <button class="btn-sm btn-danger" onclick="deleteStudent(${dssv.codeStudent})">Delete</button>
+                                    <button class="btn-sm btn-danger" onclick="deleteStudent(${dssv.codeStudent}, ${i})">Delete</button>
 
                                 </td>`));
                     tbody.append(row);
@@ -129,16 +129,21 @@ function openModal(mssv, index) {
 
 
 
-function deleteStudent(id) {
-    if (confirm("Are you sure you want to delete this student?")) {
-      console.log(id);
-      fetch('http://localhost:3000/students/', {
-      method: 'delete'
-      })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-
+function deleteStudent(mssv, index) {
+  
+  $.ajax({
+    url: `http://localhost:3000/students/${mssv}`,
+    type: 'DELETE',
+    success: function(result) {
+      console.log(result);
+      // Handle the successful deletion of the student here
+    },
+    error: function(xhr, status, error) {
+      console.error(error);
+      // Handle any errors that occurred during the deletion here
     }
-  }
+  });
+}
+
+
   

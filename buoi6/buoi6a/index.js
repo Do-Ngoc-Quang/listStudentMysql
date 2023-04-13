@@ -61,19 +61,33 @@ app.post('/students', (req, res) => {
 app.put('/students', (req, res) => {
     res.send('PUT students!!');
 });
+
 app.delete('/students/:mssv', (req, res) => {
-    const fs = require('fs');
-    console.log(id);
-    const studentCode = '21661029';
-    const students = require('./students.json');
-
-    const updatedStudents = students.filter(student => student.codeStudent !== studentCode);
-
-    fs.writeFile('./students.json', JSON.stringify(updatedStudents), err => {
-        if (err) throw err;
-        console.log(`Student with code ${studentCode} deleted successfully!`);
-    });
-
-});
+    const students = require('./DSSV1.json');
+    const index = req.params.mssv;
+  
+    if (index >= 0 && index < students.length) {
+      students.splice(index, 1);
+  
+      // Lưu lại danh sách sinh viên sau khi xóa vào file students.json
+      fs.writeFile('./DSSV1.json', JSON.stringify(students), err => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Lỗi khi xóa sinh viên!');
+        } else {
+          console.log(`Xóa sinh viên ở chỉ số ${index} thành công!`);
+          res.send('Xóa sinh viên thành công!');
+        }
+      });
+    } else {
+      res.status(400).send('Chỉ số sinh viên không hợp lệ!');
+    }
+  });
+  
+  
+  // Start server
+  app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+  });
 
 app.listen(port, () => console.log(`App is running at port ${port}`));
