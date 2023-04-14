@@ -15,23 +15,26 @@ app.get('/', (req, res) => {
 
 async function getStudent(page = 1, size = 10)
 {
-  
+  let start = (page-1)*size;
+  sql = `select * from students order by MaSV limit ${start},${size}`;
+  let data = [];
+  await db.query(sql).then((rows)=>{
+    data= rows;
+  });
+  return data;
 }
 
 //GET 
 app.get('/students', (req, res) => {
   res.send(Object.values(dssv));
 });
-app.get('/students/:mssv', (req, res) => {
-  console.log(req.params.mssv);
-  let i = 0;
-  for (i = 0; i < dssv.length; i++) {
-    if (dssv[i].codeStudent == req.params.mssv) {
-      break;
-    }
-  }
-  if (i < dssv.length) {
-    res.send(dssv[i]);
+app.get('/students_mysql', async (req, res) => {
+  page = req.query.page;
+  size = req.query.size;
+  if(page !=undefined && size != undefined)
+  {
+    const lst = await getStudent(page, size);
+    res.send(lst);
   }
   else {
     res.send("Not Fond!!");

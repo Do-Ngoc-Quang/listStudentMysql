@@ -209,6 +209,23 @@
   <!-- <script src="/path/to/cdn/jquery.min.js" type="text/javascript"></script> -->
   <!-- <script src="jquery.datetimepicker.js" type="text/javascript"></script> -->
 
+  <script id="dssvTemplate" type="text/x-JQuery-tmpl">
+    <tr>
+      <th scope="row">${STT}</th>
+      <td>${codeStudent}</td>
+      <td>${name}</td>
+      <td>${class}</td>
+      <td>${gender}</td>
+      <td>${birthday}</td>
+      <td>
+
+        <<button class="btn-sm btn-info" onclick="openModal(${dssv.codeStudent}, ${i})">Edit</button>
+        <button class="btn-sm btn-danger" onclick="deleteStudent(${dssv.codeStudent}, ${i})">Delete</button>
+      
+      </td>
+    </tr>
+  </script>
+
   <script>
     $(document).ready(function () {
       $('.datetimepicker').datepicker({
