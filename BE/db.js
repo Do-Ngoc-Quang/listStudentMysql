@@ -3,8 +3,8 @@ const config = {
     host: "localhost",
     user: "root",
     password: "babyboi",
-    database: "tkweb",
-    port: 3305
+    database: "studentlist",
+    port: 3306
 };
 const conn = mysql.createConnection(config);
 conn.connect();

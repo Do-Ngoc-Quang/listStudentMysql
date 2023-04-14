@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
   res.send('Welecome to EXPRESS backend!!');
 });
 
+async function getStudent(page = 1, size = 10)
+{
+  
+}
+
 //GET 
 app.get('/students', (req, res) => {
   res.send(Object.values(dssv));
