@@ -9,7 +9,7 @@ const config = {
 const conn = mysql.createConnection(config);
 conn.connect();
 
-function query(sql){
+async function query(sql){
     return new Promise(function(resolve, reject){
         conn.query(sql, function(err, rows, fields){
             if(err){
