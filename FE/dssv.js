@@ -5,7 +5,7 @@ $(function () {
   getStudentsMysql();
 });
 
-let canChangeTotal = 40;
+let canChangeTotal = 45;
 
 function goToPage(page) {
   const maxPage = Math.ceil(numStudents / pageSize);
