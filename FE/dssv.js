@@ -59,11 +59,6 @@ function getStudentsMysql() {
       // console.log(canChangeTotal);
     })
     .fail(function (jqXHR, textStatus, errorThrown) { console.log(textStatus) });
-  // .error(function (err) {
-  //   str = "<caption>Error...</caption>"
-  //   $("#tbodySV").html(str);
-  // });
-
 }
 console.log(canChangeTotal);
 
@@ -81,15 +76,15 @@ const numPages = parseInt(numStudents / pageSize);
 // Update the pagination HTML with the correct number of page links
 let html = '';
 html += `<li class="page-item">
-            <a class="page-link" href="#" onclick="goPrev()" aria-label="Previous">
+            <a class="page-link" href="javascript:void(0)" onclick="goPrev()" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>`;
 for (let i = 1; i <= numPages; i++) {
-  html += `<li class="page-item"><a class="page-link" href="#" onclick="goToPage(${i})">${i}</a></li>`;
+  html += `<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="goToPage(${i})">${i}</a></li>`;
 }
 html += `<li class="page-item">
-            <a class="page-link" href="#" onclick="goNext()" aria-label="Next">
+            <a class="page-link" href="javascript:void(0)" onclick="goNext()" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>`;
