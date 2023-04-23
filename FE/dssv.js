@@ -28,6 +28,11 @@ function goPrev() {
   getStudentsMysql();
 }
 
+function formatDate(str){
+  const d = new Date(str);
+  return d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
+}
+
 function getStudentsMysql() {
   $.ajax({
     method: "GET",
@@ -184,26 +189,26 @@ let cPage = 1; // initialize the current page to 1
 //   }
 // }
 
-// function addStudent() {
+function addStudent() {
 
-//   gt = $('input[name="gender"]:checked').val();
-//   $.ajax({
-//     method: "POST",
-//     url: "http://localhost:3000/students",
-//     data: {
-//       "MaSV": $("#txtCodeAdd").val(),
-//       "HoTen": $("#txtNameAdd").val(),
-//       "Lop": $("#txtClassAdd").val(),
-//       "GioiTinh": gt,
-//       "NgaySinh": $("#dateAdd").val(),
-//     }
-//   })
-//     .done(function (res) {
-//       if (res.success) alert(res.msg);
-//       else alert(res.msg);
-//     }).fail(function (jqXHR, textStatus, errorThrown) { console.log(textStatus) });
+  gt = $('input[name="gender"]:checked').val();
+  $.ajax({
+    method: "POST",
+    url: "http://localhost:3000/students_mysql",
+    data: {
+      "MaSV": $("#txtCodeAdd").val(),
+      "HoTen": $("#txtNameAdd").val(),
+      "Lop": $("#txtClassAdd").val(),
+      "GioiTinh": gt,
+      "NgaySinh": $("#dateAdd").val(),
+    }
+  })
+    .done(function (res) {
+      if (res.success) alert(res.msg);
+      else alert(res.msg);
+    }).fail(function (jqXHR, textStatus, errorThrown) { console.log(textStatus) });
 
-// }
+}
 
 
 // function updateStudent() {

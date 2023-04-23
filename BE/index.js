@@ -41,6 +41,29 @@ async function getStudentsMysql(page = 1, size = 10) {
   };
 }
 
+async function getStudent(mssv = "") {
+  let sql = `SELECT * FROM students WHERE MaSV = ${mssv}`;
+  let data = [];
+  await query(sql).then((rows) => {
+    data = rows;
+  });
+  return data;
+}
+
+async function addStudent(sv = null) {
+  if (sv != null) {
+    let sql = `INSERT INTO students(MaSV,HoTen,Lop,GioiTinh,NgaySinh)
+        VALUES ('${dssv.MaSV}','${dssv.HoTen}','${dssv.Lop}','${dssv.GioiTinh}','${dssv.NgaySinh}');`;
+    let data = [];
+    await db.query(sql).then((rows) => {
+      data = rows;
+    });
+    return data;
+  }
+  else return null;
+}
+
+//end function
 
 //GET 
 app.get('/students', (req, res) => {
@@ -79,35 +102,34 @@ app.get('/students_mysql', async (req, res) => {
   }
 });
 
-// //POST Add new student
-// app.post("/students", urlParser, (req, res) => {
-//   var sv = req.body;
-//   var result = dssv.find(item => item.MaSV === sv.MaSV);
-//   console.log(result);
-//   if (result != null || result != undefined) {
-//     var obj = {
-//       success: false, msg: "Mã SV bị trùng!"
-//     };
-//     res.send(obj);
-//   }
-//   else {
-//     dssv.push(sv);
-//     fs.writeFile('DSSV.json', JSON.stringify(dssv), err => {
-//       if (err) {
-//         console.log(err);
-//       }
-//       else {
-//         console.log("OK");
-//       }
-//     });
+//POST Add new student
+app.post("/students_mysql", urlParser, async (req, res) => {
+  var sv = req.body;
+  var result = await getStudent(sv.MaSV);
+  console.log(result);
+  if (result != null || result != undefined && result != []) {
+    var obj = {
+      success: false, msg: "Mã SV bị trùng!"
+    };
+    res.send(obj);
+  }
+  else {
+    ret = addStudent(sv);
+    if(ret != null){
+    var obj = {
+      success: true, msg: "Add new student success!"
+    };
+    res.send(obj);
+    }
+    else{
+      var obj = {
+        success: false, msg: "Add new student Failled!"
+      };
+      res.send(obj);
+    }
+  }
 
-//     var obj = {
-//       success: true, msg: "Add new student success!"
-//     };
-//     res.send(obj);
-//   }
-
-// });
+});
 
 
 // app.put('/students/:mssv', urlParser, (req, res) => {

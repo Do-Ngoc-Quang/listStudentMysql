@@ -199,7 +199,7 @@
             </div>
             <div class="modal-footer">
               <button type="reset" class="btn btn-info">Reset</button>
-              <button type="submit" class="btn btn-primary" onclick="addStudent()">Add Student</button>
+              <button type="submit" class="btn btn-primary" onclick="addStudentsMysql()">Add Student</button>
             </div>
           </form>
         </div>
@@ -226,9 +226,9 @@
       <td>${HoTen}</td>
       <td>${Lop}</td>
       <td>${GioiTinh}</td>
-      <td>${NgaySinh}</td>
+      <td>${formatDate(NgaySinh)}</td>
       <td>
-        <button class="btn-sm btn-info" onclick="openModal(${MaSV}, ${STT-1})">Edit</button>
+        <button class="btn-sm btn-info" onclick="openModal(${MaSV})">Edit</button>
         <button class="btn-sm btn-danger" onclick="deleteStudent(${MaSV})">Delete</button>
       </td>
     </tr>
@@ -241,6 +241,7 @@
         todayHighlight: true // Highlight today's date in the datepicker
       });
     });
+
 
   </script>
 </body>
