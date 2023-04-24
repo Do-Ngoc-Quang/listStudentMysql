@@ -53,21 +53,22 @@ async function getStudent(mssv = "") {
 async function addStudent(sv = null) {
   if (sv != null) {
     let sql = `INSERT INTO students(MaSV,HoTen,Lop,GioiTinh,NgaySinh)
-        VALUES ('${dssv.MaSV}','${dssv.HoTen}','${dssv.Lop}','${dssv.GioiTinh}','${dssv.NgaySinh}');`;
+        VALUES ('${sv.MaSV}','${sv.HoTen}','${sv.Lop}','${sv.GioiTinh}','${sv.NgaySinh}');`;
     let data = [];
-    await db.query(sql).then((rows) => {
+    await query(sql).then((rows) => {
       data = rows;
     });
     return data;
   }
-  else return null;
+  else 
+    return null;
 }
 
 //end function
 
 //GET 
 app.get('/students', (req, res) => {
-  res.send(Object.values(dssv));
+  // res.send(Object.values(dssv));
 });
 
 // GET Json
@@ -107,19 +108,20 @@ app.post("/students_mysql", urlParser, async (req, res) => {
   var sv = req.body;
   var result = await getStudent(sv.MaSV);
   console.log(result);
-  if (result != null || result != undefined && result != []) {
+  if (result != null && result != undefined && result != []) {
     var obj = {
-      success: false, msg: "Mã SV bị trùng!"
+      success: false,
+      msg: "Mã SV bị trùng!"
     };
     res.send(obj);
   }
   else {
     ret = addStudent(sv);
     if(ret != null){
-    var obj = {
-      success: true, msg: "Add new student success!"
-    };
-    res.send(obj);
+      var obj = {
+        success: true, msg: "Add new student success!"
+      };
+      res.send(obj);
     }
     else{
       var obj = {

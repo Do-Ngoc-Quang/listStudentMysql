@@ -189,7 +189,7 @@ let cPage = 1; // initialize the current page to 1
 //   }
 // }
 
-function addStudent() {
+function addStudentsMysql() {
 
   gt = $('input[name="gender"]:checked').val();
   $.ajax({
